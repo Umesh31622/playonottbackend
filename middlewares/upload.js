@@ -5,8 +5,8 @@ const cloudinary = require("../config/cloudinary");
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "playon/livestreams",
-    resource_type: "auto", // image OR video
+    folder: "playon/categories",
+    resource_type: "image",
   },
 });
 

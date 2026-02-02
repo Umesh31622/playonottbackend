@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -5,33 +6,30 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-/* ================= DB ================= */
+/* DB */
 connectDB();
 
-/* ================= MIDDLEWARE ================= */
+/* Middlewares */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* ================= CORS ================= */
+/* CORS */
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 
-/* ================= ROUTES ================= */
-app.use("/api/auth", require("./routes/auth.routes"));
+/* Routes */
 app.use("/api", require("./routes/channel.routes"));
+app.use("/api", require("./routes/category.routes"));
 
-/* ================= TEST ================= */
 app.get("/", (req, res) => {
-  res.send("✅ Backend working fine");
+  res.send("✅ PlayOn Backend Running");
 });
 
-/* ================= SERVER ================= */
+/* Server */
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
